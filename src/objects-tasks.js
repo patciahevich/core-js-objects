@@ -135,12 +135,13 @@ function makeImmutable(obj) {
  */
 function makeWord(lettersObject) {
   const result = [];
+  function push(index, value) {
+    result[index] = value;
+  }
   const keys = Object.keys(lettersObject);
   keys.forEach((key) => {
     const clues = lettersObject[key];
-    clues.forEach(function (item) {
-      result[item] = key;
-    });
+    clues.forEach((item) => push(item, key));
   });
   return result.join('');
 }
